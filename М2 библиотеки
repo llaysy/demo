@@ -1,0 +1,17 @@
+Этап 2: Создание проекта и настройка проекта и зависимостей
+Установка необходимых пакетов
+ 
+# Устанавливаем необходимые пакеты
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 9.0.3
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 9.0.3
+dotnet add package FirebirdSql.EntityFrameworkCore.Firebird --version 12.0.0
+dotnet add package Avalonia.ReactiveUI --version 11.2.6
+ 
+# Устанавливаем Entity Framework Core tool
+dotnet new tool-manifest
+dotnet tool install dotnet-ef --version 9.0.3
+dotnet tool restore
+ 
+Генерация моделей Entity Framework
+dotnet ef dbcontext scaffold "DataSource=localhost;Port=3050;Database=/demo2/demo.fdb;Username=sysdba;Password=your_password" FirebirdSql.EntityFrameworkCore.Firebird -o Entities -f
+Результат: Автоматическое создание классов User и Product в папке Entities на основе структуры базы данных.
